@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :api, path: '/', constraints: { subdomain: 'api'} do
+  namespace :api, path: '/', constraints: { subdomain: 'api'}, defaults: { format: 'json' } do
     resources :appointments
   end
   # The priority is based upon order of creation: first created -> highest priority.

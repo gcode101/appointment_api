@@ -23,11 +23,17 @@ class ListingAppointmentsTest < ActionDispatch::IntegrationTest
 	end
 
 	test 'returns appointment by id' do
-		appointment = Appointment.create!(start_time: '11/23/2015 11:39')
+		appointment = Appointment.create!(start_time: "11/1/13 9:30", end_time: "11/1/13 9:35", first_name: "bayley", last_name: "keller")
 		get "/appointments/#{appointment.id}"
 		assert_equal 200, response.status
 
 		appointment_response = json(response.body)
 		assert_equal appointment.start_time, appointment_response[:start_time]
+	end
+
+	test 'returns appointments in JSON' do
+		get '/appointments', {}, { 'Accept' => Mime::JSON }
+		assert_equal 200, response.status
+		assert_equal Mime::JSON, response.content_type
 	end
 end

@@ -44,6 +44,12 @@ module API
 			end
 		end
 
+		def destroy
+			appointment = Appointment.find(params[:id])
+			appointment.destroy
+			head 204
+		end
+
 		private
 			def appointment_params
 				params.require(:appointment).permit(:start_time, :end_time, :last_name, :first_name, :comments)

@@ -26,12 +26,21 @@ module API
 		end
 
 		def create
-			@appointment = Appointment.new(appointment_params)
+			appointment = Appointment.new(appointment_params)
 
-			if @appointment.save
-				respond_with :api, @appointment
+			if appointment.save
+				respond_with :api, appointment
 			else
-				render json: @appointment.errors, status: 422
+				render json: appointment.errors, status: 422
+			end
+		end
+
+		def update
+			appointment = Appointment.find(params[:id])
+			if appointment.update(appointment_params)
+				render json: appointment, status: 200
+			else
+				render json: appointment.errors, status: 422
 			end
 		end
 

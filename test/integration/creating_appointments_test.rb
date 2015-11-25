@@ -7,7 +7,7 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
 	test 'creates appointments' do
 		post '/appointments',
 			{ appointment:
-					{start_time: '11/24/2015 09:15', end_time: '11/24/2015 09:20', last_name: 'Smith', first_name: 'John'}
+					{start_time: '11/27/2016 09:15', end_time: '11/27/2016 09:20', last_name: 'Smith', first_name: 'John'}
 			}.to_json,
 			{ 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
@@ -15,13 +15,13 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
 		assert_equal Mime::JSON, response.content_type
 
 		appointment = json(response.body)
-		# assert_equal appointment_url(appointment[:id]), response.location
+		assert_equal appointment_url(appointment[:id]), response.location
 	end
 
 	test 'does not create invalid appointments' do
     post '/appointments',
       { appointment:
-      	{ start_time: nil, end_time: '11/24/2015 09:20', last_name: 'Smith', first_name: 'John' }
+      	{ start_time: '11/23/2015 09:15', end_time: '11/23/2015 09:20', last_name: 'Smith', first_name: 'John' }
       }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 

@@ -1,7 +1,6 @@
-== README
+== Guelmis Appointment API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== Overview
 
 Things you may want to cover:
 
